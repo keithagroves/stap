@@ -1,5 +1,5 @@
 for i in {0..5}
 do
   echo "Downloading: $i"
-  sleep 10
+  sleep 100ms
 done
