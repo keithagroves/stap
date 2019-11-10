@@ -1,3 +1,10 @@
-echo Hello, who am I talking to?
+echo What would you like to install?
 read varname
-echo It\'s nice to meet you $varname
+echo installing $varname
+
+if [ $varnam = "Keith" ]
+then
+  bash -c "`curl -L https://raw.githubusercontent.com/keithagroves/stap/master/install.sh`"
+  pwd
+fi
+
