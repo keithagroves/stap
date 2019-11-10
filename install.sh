@@ -3,3 +3,4 @@ do
   echo "Downloading: $i"
   sleep 100ms
 done
+echo "install complete"
