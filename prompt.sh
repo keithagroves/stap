@@ -4,7 +4,7 @@ echo installing $varname
 
 if [[ "$varname" == "Keith" ]];
 then
-  bash -c "`curl -L https://raw.githubusercontent.com/keithagroves/stap/master/install.sh?$(date +%s)`"
+  bash -c "`curl -L -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/keithagroves/stap/master/install.sh?$(date +%s)`"
   pwd
 fi
 
