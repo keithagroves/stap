@@ -9,7 +9,7 @@
 #         \/                 \/          
 #
 #
-# Bash program for installing common developer programs.
+# Bash program for installing common developer programs without a GUI.
 #
 # Depends on:
 #  list
@@ -21,7 +21,7 @@
 #
 # Bash Boilerplate: https://github.com/alphabetum/bash-boilerplate
 #
-# Copyright (c) 2015 William Melody • hi@williammelody.com
+# Copyright (c) 2019 Keith Groves • keithalgroves@gmail.com
 
 # Notes #######################################################################
 
@@ -946,6 +946,9 @@ install() {
 
   if [[ "${_name}" == "demo" ]]
   then
+      ##Todo: 
+      ##      call install script and pass in arguments.
+      ##      detect OS
       bash -c "`curl -L -H 'Cache-Control: no-cache' "${_REPOSITORY}${_BRANCH}"/OSX/install.sh?$(date +%s)`"
   elif [[ -n "${_name}" ]]
   then
