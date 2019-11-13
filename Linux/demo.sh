@@ -4,7 +4,7 @@ do
   echo "Downloading: $i"
   for i in {0..5}
     do
-        echo -ne "$pc%\033[0K\r"
+        echo -ne ".%\033[0K\r"
     done
   sleep 2s
 done
