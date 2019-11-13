@@ -883,7 +883,7 @@ Usage:
   ${_ME} install [options]
 
 Options:
-  -f, --farewell  Print "Goodbye, World!"
+  -s, --system  Specify OS if auto detection is not preferred.
 
 Description:
   Installs programs from ${_REPOSITORY}
@@ -925,11 +925,16 @@ install() {
   # Initialize arguments array.
   local _arguments=()
 
+  ##      detect OS
+  local _os=$(_detectOS)
+
   # Parse command arguments.
   for __arg in "${_COMMAND_ARGV[@]:-}"
   do
     case ${__arg} in
-      --farewell | -f) _greeting="Goodbye";;
+      --system | -s) echo "Enter an operating system" 
+                     read varname
+                     _os=${varname};;
       -*) _die printf "Unexpected option: %s\\n" "${__arg}";;
       *) _arguments+=("${__arg}");;
     esac
@@ -948,8 +953,9 @@ install() {
   then
       ##Todo: 
       ##      call install script and pass in arguments.
-      ##      detect OS
-      bash -c "`curl -L -H 'Cache-Control: no-cache' "${_REPOSITORY}${_BRANCH}"/OSX/install.sh?$(date +%s)`"
+    
+      echo "Downloading install script for " ${_os}
+      bash -c "`curl -L -H 'Cache-Control: no-cache' "${_REPOSITORY}${_BRANCH}"/${_os}/${_name}.sh?$(date +%s)`"
   elif [[ -n "${_name}" ]]
   then
     printf "%s, %s!\\n" "${_greeting}" "${_name}"
@@ -958,6 +964,19 @@ install() {
     #printf "%s, World!\\n" "${_greeting}"
   fi
 }
+
+_detectOS(){
+case "$OSTYPE" in
+  solaris*) echo "SOLARIS" ;;
+  darwin*)  echo "OSX" ;; 
+  linux*)   echo "LINUX" ;;
+  bsd*)     echo "BSD" ;;
+  msys*)    echo "WINDOWS" ;;
+  *)        echo "unknown: $OSTYPE" ;;
+esac
+}
+
+
 
 
 ###############################################################################
