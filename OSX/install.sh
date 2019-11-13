@@ -1,3 +1,4 @@
+echo "installing a terminal program for mac"
 for i in {0..5}
 do
   echo "Downloading: $i"
