@@ -12,14 +12,7 @@
 # Bash program for installing common developer programs without a GUI.
 #
 # Depends on:
-#  list
-#  of
-#  programs
-#  expected
-#  in
-#  environment
-#
-# Bash Boilerplate: https://github.com/alphabetum/bash-boilerplate
+#  An internet connection.
 #
 # Copyright (c) 2019 Keith Groves • keithalgroves@gmail.com
 
@@ -667,7 +660,6 @@ Usage:
 Description:
   Display the current program version.
 
-  To save you the trouble, the current version is ${_VERSION}
 HEREDOC
 version() {
   printf "%s\\n" "${_VERSION}"
@@ -920,8 +912,7 @@ install() {
     printf "install() \${_COMMAND_PARAMETERS[*]:-}: %s\\n" \
     "${_COMMAND_PARAMETERS[*]:-}"
 
-  # Set default greeting.
-  local _greeting="Hey"
+
   # Initialize arguments array.
   local _arguments=()
 
@@ -953,12 +944,12 @@ install() {
   then
       ##Todo: 
       ##      call install script and pass in arguments.
-    
       echo "Downloading install script for " ${_os}
       bash -c "`curl -L -H 'Cache-Control: no-cache' "${_REPOSITORY}${_BRANCH}"/${_os}/${_name}.sh?$(date +%s)`"
+
   elif [[ -n "${_name}" ]]
   then
-    printf "%s, %s!\\n" "${_greeting}" "${_name}"
+    printf "%s, %s!\\n" ${_name} "is not found."
   else
     help "install"
     #printf "%s, World!\\n" "${_greeting}"
