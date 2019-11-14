@@ -936,20 +936,21 @@ install() {
 
   local _name=${_arguments[1]:-}
 
-  _debug printf "install() \${greeting}: %s\\n" "${_greeting}"
+  #_debug printf "install() \${detectOS}: %s\\n" "${_detectOS}"
   _debug printf "install() \${name}: %s\\n" "${_name}"
 
+   ##Todo: 
+      ##      call install script and pass in arguments.
+  echo "Downloading install script for " ${_os}
+  bash -c "`curl -L -H 'Cache-Control: no-cache' "${_REPOSITORY}${_BRANCH}"/${_os}/${_name}.sh?$(date +%s)`"
 
   if [[ "${_name}" == "demo" ]]
   then
-      ##Todo: 
-      ##      call install script and pass in arguments.
-      echo "Downloading install script for " ${_os}
-      bash -c "`curl -L -H 'Cache-Control: no-cache' "${_REPOSITORY}${_BRANCH}"/${_os}/${_name}.sh?$(date +%s)`"
+           echo "Downloading install script for " ${_os}
 
   elif [[ -n "${_name}" ]]
   then
-    printf "%s, %s!\\n" ${_name} "is not found."
+    printf "%s, %s!\\n" "${_name}" " is not found."
   else
     help "install"
     #printf "%s, World!\\n" "${_greeting}"
