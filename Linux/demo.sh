@@ -4,7 +4,7 @@ do
   echo "Downloading: $i"
     for pc in $(seq 1 100); do
      echo -ne "$pc%\033[0K\r"
-      sleep 1
+      sleep 0.01
     done
     echo
   sleep 2s
